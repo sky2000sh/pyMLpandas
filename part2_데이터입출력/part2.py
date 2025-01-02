@@ -106,3 +106,68 @@ print(df8)
 # print('etfs 딕셔너리 출력 =>')
 # print(etfs)
 # print('\n')
+
+# CSV 파일로 저장
+# pandas DataFrame() 함수로 데이터프레임 변환. 변수 df에 저장
+data = {'name': ['Serry', 'Riah', 'Paul'],
+        'algol': ["A", "A+", "B"],
+        'basic': ["C", "B", "B+"],
+        'c++': ["B+", "C", "C+"],
+        }
+
+df9 = pd.DataFrame(data)
+df9.set_index('name', inplace=True)
+print('CSV 파일로 저장 : name 열을 인덱스로 지정 =>')
+print(df9)
+
+# to_csv() 함수롤 사용하여 CSV 파일로 내보내기. 파일명은 df_sample.csv로 지정
+print('to_csv() 함수롤 사용하여 CSV 파일로 내보내기. 파일명은 df_sample.csv로 지정 =>')
+df9.to_csv(r'./df_sample.csv')
+print('\n')
+
+# to_json() 함수롤 사용하여 JSON 파일로 내보내기. 파일명은 df_sample.json로 지정
+print('to_json() 함수롤 사용하여 JSON 파일로 내보내기. 파일명은 df_sample.json로 지정 =>')
+df9.to_json(r'./df_sample.json')
+print('\n')
+
+# to_exel() 함수롤 사용하여 Excel 파일로 내보내기. 파일명은 df_sample.xlsx로 지정
+print('to_exel() 함수롤 사용하여 Excel 파일로 내보내기. 파일명은 df_sample.xlsx로 지정 =>')
+df9.to_excel(r'./df_sample.xlsx')
+print('\n')
+
+# ExcelWriter() 활용
+# pandas DataFrame() 함수로 데이터프레임 변환. 변수 df에 저장
+data101 = {'name': ['Serry', 'Riah', 'Paul'],
+           'algol': ["A", "A+", "B"],
+           'basic': ["C", "B", "B+"],
+           'c++': ["B+", "C", "C+"]
+        }
+
+data102 = {'c0': [1,2,3],
+           'c1': [4,5,6],
+           'c2': [7,8,9],
+           'c3': [10,11,12],
+           'c4': [13,14,15]
+        }
+
+df10 = pd.DataFrame(data101)
+df10.set_index('name', inplace=True)
+print('ExcelWriter() 활용 : name 열을 인덱스로 지정 =>')
+print(df10)
+print('\n')
+
+df11 = pd.DataFrame(data102)
+df11.set_index('c0', inplace=True)
+print('ExcelWriter() 활용 : c0 열을 인덱스로 지정 =>')
+print(df11)
+print('\n')
+
+# df10을 'sheet1'으로, df12를 'sheet2'로 저장(Excel 파일명은 "df_excelwriter.xlsx")
+print('df10을 "sheet1"으로, df12를 "sheet2"로 저장(Excel 파일명은 "df_excel writer.xlsx" =>')
+writer = pd.ExcelWriter("./df_excel writer.xlsx")
+df10.to_excel(writer, sheet_name="sheet1")
+df11.to_excel(writer, sheet_name="sheet2")
+writer.save()
+print('\n')
+
+
