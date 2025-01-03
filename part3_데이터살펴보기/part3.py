@@ -43,6 +43,85 @@ print(df.describe())
 print('\n')
 print(df.describe(include='all'))
 print('\n')
+print('df의 데이터 개수 확인 =>')
+print(df.count())
+print('\n')
+print('df.count()가 반환하는 객체 타입 출력 =>')
+print(type(df.count()))
+print('\n')
+print('데이터프레임 df의 특정 열이 가지고 있는 고유값 확인 =>')
+unique_values = df['origin'].value_counts()
+print(unique_values)
+print('\n')
+print('value_counts 함수가 반환하는 객체 타입 출력 =>')
+print(type(unique_values))
+print('\n')
+
+# 통계 함수
+# 평균값
+print('통계 함수 평균값 =>')
+print(df.mean)
+print('\n')
+print(df['mpg'].mean)
+print(df.mpg.mean)
+print('\n')
+print(df[['mpg', 'weight']].mean)
+print('\n')
+
+# 중간값
+print('통계 함수 중간값 =>')
+print(df.median)
+print('\n')
+print(df['mpg'].median)
+print('\n')
+
+# 최대값
+print('통계 함수 최대값 =>')
+print(df.max)
+print('\n')
+print(df['mpg'].max)
+print('\n')
+
+# 최소값
+print('통계 함수 최소값 =>')
+print(df.min)
+print('\n')
+print(df['mpg'].min)
+print('\n')
+
+# 표준편차
+print('통계 함수 표준편차 =>')
+print(df.std)
+print('\n')
+print(df['mpg'].std)
+print('\n')
+
+# 상관계수
+print('통계 함수 상관계수 =>')
+print(df.corr)
+print('\n')
+print(df[['mpg', 'weight']].corr)
+print('\n')
 
 
+# 선 그래프 그리기
+print('선 그래프를 위한 데이터프레임 변환 =>')
+df1 = pd.read_excel(r'./남북한발전전력량.xlsx', engine='openpyxl')
+df_ns = df1.iloc[[0, 5], 3:]
+df_ns.index = ['South', 'North']
+df_ns.columns = df_ns.columns.map(int)
+print(df_ns.head)
+print('\n')
+print('선 그래프 그리기 =>')
+df_ns.plot()
 
+# 행, 열 전치하여 다시 그리기
+print('행, 열 전치하여 다시 그리기 =>')
+tdf_ns = df_ns.T
+print(tdf_ns.head)
+print('\n')
+tdf_ns.plot()
+
+# 막대 그래프
+print('행, 열 전치하여 막대 그래프 그리기 =>')
+tdf_ns.plot(kind='bar')
