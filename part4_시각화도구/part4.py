@@ -92,11 +92,3 @@ print('\n')
 
 # 스타일 리스트 출력
 print(plt.style.available)
-
-
-
-
-
-
-
-
